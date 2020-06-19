@@ -24,6 +24,8 @@ import android.util.Log;
 
 import org.lineageos.settings.doze.DozeUtils;
 import org.lineageos.settings.popupcamera.PopupCameraUtils;
+import org.lineageos.settings.utils.FileUtils;
+import org.lineageos.settings.thermal.ThermalUtils;
 
 public class BootCompletedReceiver extends BroadcastReceiver {
 
@@ -32,11 +34,22 @@ public class BootCompletedReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(final Context context, Intent intent) {
+<<<<<<< HEAD
         if (DEBUG) Log.d(TAG, "Received boot completed intent");
         DozeUtils.checkDozeService(context);
 <<<<<<< HEAD
         PopupCameraUtils.startService(context);
 =======
+=======
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+        if (DozeUtils.isDozeEnabled(context) && DozeUtils.sensorsEnabled(context)) {
+            if (DEBUG) Log.d(TAG, "Starting Doze service");
+            DozeUtils.startService(context);
+            ThermalUtils.startService(context);
+        }
+
+        new DiracUtils(context).onBootCompleted();
+>>>>>>> 13755bb... davinci:Add dynamic thermal profile implementation
 
         boolean dcDimmingEnabled = sharedPrefs.getBoolean(DC_DIMMING_ENABLE_KEY, false);
         FileUtils.writeLine(DC_DIMMING_NODE, dcDimmingEnabled ? "1" : "0");
