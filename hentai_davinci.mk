@@ -26,7 +26,7 @@ TARGET_BOOT_ANIMATION_RES := 1080
 TARGET_GAPPS_ARCH := arm64
 TARGET_INCLUDE_STOCK_ARCORE := true
 TARGET_SUPPORTS_GOOGLE_RECORDER := true
-$(call inherit-product, vendor/hentai/config/common_full_phone.mk)
+$(call inherit-product, vendor/hentai/config/common.mk)
 
 PRODUCT_NAME := hentai_davinci
 PRODUCT_DEVICE := davinci
